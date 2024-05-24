@@ -34,6 +34,14 @@ const TodoList: React.FC = () => {
     toast.success("Task updated successfully!");
   };
 
+  if (!taskGroups.length) {
+    return (
+      <div className="py-4">
+        <h2 className="text-center text-3xl">No Task</h2>
+        <p className="text-center">Please create new task!</p>
+      </div>
+    );
+  }
 
   return <div>
     {taskGroups.map((group) => {

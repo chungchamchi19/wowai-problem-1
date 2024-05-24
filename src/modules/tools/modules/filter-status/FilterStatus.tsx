@@ -4,7 +4,7 @@ import { useTaskContext } from "../../../../contexts/TaskProvider";
 import { FilterStatus as FilterStatusType } from "../../../../types/task";
 
 const FilterStatus: React.FC = () => {
-  const listAllFilterStatus: { value: string; label: string }[] = [...listStatus, { value: "all", label: "All" }];
+  const listAllFilterStatus: { value: string; label: string }[] = [{ value: "all", label: "All" }, ...listStatus];
   const { filterStatus, setFilterStatus } = useTaskContext();
 
   return (
