@@ -13,6 +13,7 @@ export const useAddItem = () => {
   const [status, setStatus] = useState<StatusEnum>(listStatus[0]?.value ?? "todo");
   const { syncTasksWithStorage } = useTaskContext();
   const { isInvalidTitle } = useValidateTask({ title });
+  const [dueDate, setDueDate] = useState<string>("");
 
   const handleChangeDesc = (value: string) => {
     setDesc(value);
@@ -40,6 +41,7 @@ export const useAddItem = () => {
       title,
       desc,
       status,
+      dueDate
     };
     return newTask;
   };
@@ -60,5 +62,7 @@ export const useAddItem = () => {
     handleChangeTitle,
     getTask,
     addTask,
+    dueDate,
+    setDueDate
   };
 };

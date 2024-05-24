@@ -5,7 +5,7 @@ export type Task = {
   title: string;
   desc?: string;
   status: StatusEnum,
-  dueDate?: Date;
+  dueDate?: string;
 }
 
 export type Status = {

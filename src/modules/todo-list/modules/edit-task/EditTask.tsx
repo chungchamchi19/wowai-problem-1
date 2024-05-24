@@ -15,11 +15,13 @@ const EditTask: React.FC<Props> = (props) => {
     title,
     desc,
     status,
+    dueDate,
     isInvalidTitle,
     handleChangeTitle,
     handleChangeDesc,
     setStatus,
     updateTask,
+    setDueDate,
   } = useEditTask(task, { isEditing: showModal });
 
   return (
@@ -37,10 +39,12 @@ const EditTask: React.FC<Props> = (props) => {
         title={title}
         desc={desc ?? ""}
         status={status ?? "todo"}
+        dueDate={dueDate}
         isInvalidTitle={isInvalidTitle}
         handleChangeTitle={handleChangeTitle}
         handleChangeDesc={handleChangeDesc}
         setStatus={setStatus}
+        setDueDate={setDueDate}
       ></TaskForm>
     </Modal>
   );

@@ -14,7 +14,9 @@ const AddItem: React.FC = () => {
     title,
     desc,
     status,
-    setStatus
+    setStatus,
+    dueDate,
+    setDueDate
   } = useAddItem();
 
   const handleShowModal = () => {
@@ -44,6 +46,8 @@ const AddItem: React.FC = () => {
         handleChangeTitle={handleChangeTitle}
         handleChangeDesc={handleChangeDesc}
         setStatus={setStatus}
+        dueDate={dueDate}
+        setDueDate={setDueDate}
       ></TaskForm>
     </Modal>
   </div>;

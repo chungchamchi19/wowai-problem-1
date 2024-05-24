@@ -3,6 +3,10 @@ import TaskItem from "./modules/task-item/TaskItem";
 import DeleteTask from "./modules/delete-task/DeleteTask";
 import { statusColorCSS } from "../../configs/status";
 import { useTodoList } from "./hooks/useTodoList";
+import { StatusEnum, Task } from "../../types/task";
+import { updateTaskApi } from "../../api/task";
+import { useTaskContext } from "../../contexts/TaskProvider";
+import { toast } from "react-toastify";
 
 const TodoList: React.FC = () => {
   const {
@@ -18,6 +22,18 @@ const TodoList: React.FC = () => {
     getStatusLabel,
   } = useTodoList();
 
+  const { syncTasksWithStorage } = useTaskContext();
+
+
+  const changeStatusOfTask = (task: Task, status: StatusEnum) => {
+    updateTaskApi({
+      ...task,
+      status
+    });
+    syncTasksWithStorage();
+    toast.success("Task updated successfully!");
+  };
+
 
   return <div>
     {taskGroups.map((group) => {
@@ -27,7 +43,16 @@ const TodoList: React.FC = () => {
             <span>{getStatusLabel(group.status)}</span>
           </div>
           {group.tasks.map((task) => {
-            return <TaskItem key={task.id} task={task} onEditing={onEditTask} onDeleting={onDeleteTask}></TaskItem>;
+            return (
+              <TaskItem
+                key={task.id}
+                task={task}
+                onEditing={onEditTask}
+                onDeleting={onDeleteTask}
+                onChangeStatus={changeStatusOfTask}
+              >
+              </TaskItem>
+            );
           })}
         </div>
       );

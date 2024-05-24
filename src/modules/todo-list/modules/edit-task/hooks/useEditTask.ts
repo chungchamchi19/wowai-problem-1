@@ -10,6 +10,7 @@ export const useEditTask = (task: Task, options: { isEditing: boolean }) => {
   const [title, setTitle] = useState<string>("");
   const [desc, setDesc] = useState<string | undefined>("");
   const [status, setStatus] = useState<StatusEnum>(listStatus[0]?.value ?? "todo");
+  const [dueDate, setDueDate] = useState<string>("");
   const { syncTasksWithStorage } = useTaskContext();
   const { isInvalidTitle } = useValidateTask({ title });
 
@@ -38,6 +39,7 @@ export const useEditTask = (task: Task, options: { isEditing: boolean }) => {
       title,
       desc,
       status,
+      dueDate
     };
     return newTask;
   };
@@ -46,16 +48,19 @@ export const useEditTask = (task: Task, options: { isEditing: boolean }) => {
     setTitle(task.title);
     setDesc(task.desc);
     setStatus(task.status);
+    setDueDate(task.dueDate || "");
   }, [task, options.isEditing]);
 
   return {
     title,
     desc,
     status,
+    dueDate,
     isInvalidTitle,
     handleChangeDesc,
     handleChangeTitle,
     setStatus,
+    setDueDate,
     updateTask,
   };
 };

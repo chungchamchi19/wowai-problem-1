@@ -9,8 +9,8 @@ type TaskGroup = {
 };
 
 export const useTodoList = () => {
-  const [taskGroups, setTaskGroups] = useState<TaskGroup[]>([]);
   const { tasks, filterStatus } = useTaskContext();
+  const [taskGroups, setTaskGroups] = useState<TaskGroup[]>([]);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [showModalEdit, setShowModalEdit] = useState<boolean>(false);
   const [deletingTask, setDeletingTask] = useState<Task | null>(null);
